@@ -5,9 +5,7 @@ var app = express();
 app.get('/', function (req, res) {
   res.send('Hello World!');
 });
-app.get('/samir', function (req, res) {
-  res.send('Hello samir!');
-});
+
 app.get('/:x', function (req, res) {
   res.send('Hello samir!' );
 });
