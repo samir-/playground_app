@@ -1,0 +1,26 @@
+{
+  "name": "playground_app",
+  "version": "1.0.0",
+  "description": "this is an application of what i learned",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samir-/playground_app.git"
+  },
+  "keywords": [
+    "crud"
+  ],
+  "author": "samir idwy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samir-/playground_app/issues"
+  },
+  "homepage": "https://github.com/samir-/playground_app#readme"
+}
