@@ -11,13 +11,16 @@ AWS.config.update({
 var dynamodb = new AWS.DynamoDB();
 var docClient = new AWS.DynamoDB.DocumentClient();
 
-//middleware
+//middleware to parse the body
 app.use(bodyParser.urlencoded({extended: true}))
 
 ////handlers
 
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html')
+});
+app.get('/hello', function (req, res) {
+  res.send('Hello World')
 });
 app.get('/users', function (req, res) {
   var params = {
