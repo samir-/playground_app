@@ -12,6 +12,12 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 var redis = require('redis');
 var redis_client = redis.createClient();
 
+
+//to serve js / css files
+app.use(express.static('public'));
+
+
+
 //middleware to parse the body
 app.use(bodyParser.urlencoded({
     extended: true
@@ -20,7 +26,7 @@ app.use(bodyParser.urlencoded({
 ////handlers
 
 app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/index.html')
+    res.sendFile(__dirname + '/public/html/index.html')
 });
 app.get('/hello', function(req, res) {
     res.send('Hello World')
