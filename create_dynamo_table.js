@@ -1,20 +1,23 @@
 var AWS = require("aws-sdk");
 
 AWS.config.update({
-  region: "us-west-2",
-  endpoint: "http://localhost:8000"
+    region: "us-west-2",
+    endpoint: "http://localhost:8000"
 });
 
 var dynamodb = new AWS.DynamoDB();
 
 var params = {
-    TableName : "Users",
-    KeySchema: [
-        { AttributeName: "username", KeyType: "HASH"},  //Partition key
+    TableName: "Users",
+    KeySchema: [{
+            AttributeName: "username",
+            KeyType: "HASH"
+        }, //Partition key
     ],
-    AttributeDefinitions: [
-        { AttributeName:"username",AttributeType: "S" },
-    ],
+    AttributeDefinitions: [{
+        AttributeName: "username",
+        AttributeType: "S"
+    }, ],
     ProvisionedThroughput: {
         ReadCapacityUnits: 10,
         WriteCapacityUnits: 10

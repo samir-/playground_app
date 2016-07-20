@@ -10,6 +10,8 @@
     "request": "^2.73.0"
   },
   "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jsbeautifier": "^2.0.3",
     "jasmine-node": "^1.14.5"
   },
   "scripts": {
