@@ -4,6 +4,7 @@
   "description": "this is an application of what i learned",
   "main": "server.js",
   "dependencies": {
+    "aws-sdk": "^2.4.7",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "redis": "^2.6.2",
