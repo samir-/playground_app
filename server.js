@@ -13,13 +13,11 @@
        var docClient = new AWS.DynamoDB.DocumentClient();
        var redis = require('redis');
        var redis_client = redis.createClient();
+       var wredis = require('./modules/wredis.js')
 
 
        //to serve js / css files
        app.use(express.static('public'));
-
-
-
        //middleware to parse the body
        app.use(bodyParser.urlencoded({
            extended: true
@@ -61,13 +59,13 @@
            };
 
            console.log("Adding a new item...");
-           redis_check(user.username, function(check) {
+           wredis.redis_check(user.username,redis_client, function(check) {
                if (check == false) {
                    docClient.put(params, function(err, data) {
                        if (err) {
                            console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
                        } else {
-                           redis_add(user.username, user.email);
+                           wredis.redis_add(user.username, user.email,redis_client);
                            console.log("Added item:", JSON.stringify(data, null, 2));
                            res.redirect(localpath + '/users')
                        }
@@ -85,34 +83,3 @@
        redis_client.on('connect', function() {
            console.log('redis connected');
        });
-       var redis_add = function(username, email) {
-
-           redis_client.set(username, email, function(err, reply) {
-               console.log(reply + " ,  Userame /Email added ");
-
-           });
-
-       }
-       var redis_retrieve = function(username) {
-
-           redis_client.get(username, function(err, reply) {
-               console.log(reply);
-
-           });
-       }
-
-       // i don't know how to return from from asynch func , it seems like it's impossible so check is there to avoid another fnction
-
-
-       var redis_check = function(username, callback) {
-           redis_client.exists(username, function(err, reply) {
-
-               if (reply === 1) {
-                   console.log('exists');
-                   if (typeof callback === 'function') callback(true)
-               } else {
-                   console.log('doesn\'t exist');
-                   if (typeof callback === 'function') callback(false)
-               }
-           });
-       }
